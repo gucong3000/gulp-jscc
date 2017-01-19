@@ -1,0 +1,39 @@
+{
+  "name": "gulp-jscc",
+  "version": "1.0.0",
+  "description": "A gulp plugin for jscc",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gucong3000/gulp-jscc.git"
+  },
+  "keywords": [
+    "gulp",
+    "jscc",
+    "conditional",
+    "comments",
+    "compilation",
+    "parser"
+  ],
+  "author": "gucong3000",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gucong3000/gulp-jscc/issues"
+  },
+  "homepage": "https://github.com/gucong3000/gulp-jscc#readme",
+  "dependencies": {
+    "bufferstreams": "^1.1.1",
+    "jscc": "github:gucong3000/jscc",
+    "vinyl-sourcemaps-apply": "^0.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "vinyl-fs": "^2.4.4"
+  }
+}
