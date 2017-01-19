@@ -3,6 +3,7 @@
 *.seed
 .editorconfig
 .eslintrc*
+.eslintignore
 .gitignore
 .grunt
 .lock-wscript

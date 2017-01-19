@@ -7,7 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test"
+    "coveralls": "npm run test-cov && coveralls < coverage/lcov.info",
+    "lint": "node-version-gte-4 && eslint . || echo \"ESLint not supported\"",
+    "test": "npm run lint && mocha",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha"
   },
   "repository": {
     "type": "git",
@@ -29,11 +32,17 @@
   "homepage": "https://github.com/gucong3000/gulp-jscc#readme",
   "dependencies": {
     "bufferstreams": "^1.1.1",
+    "gulp-util": "^3.0.8",
     "jscc": "github:gucong3000/jscc",
     "vinyl-sourcemaps-apply": "^0.2.1"
   },
   "devDependencies": {
+    "cover": "^0.2.9",
+    "coveralls": "^2.11.15",
+    "eslint": "^3.13.1",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
+    "node-version-check": "^2.1.1",
     "vinyl-fs": "^2.4.4"
   }
 }

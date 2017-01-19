@@ -1,8 +1,8 @@
 'use strict';
 const Transform = require('stream').Transform;
+const PluginError = require('gulp-util').PluginError;
 const BufferStreams = require('bufferstreams');
 var applySourceMap = require('vinyl-sourcemaps-apply');
-var path = require('path');
 const jscc = require('jscc');
 
 function transformBuffer(buffer, file, options) {
@@ -12,7 +12,8 @@ function transformBuffer(buffer, file, options) {
 	let result = jscc(buffer.toString(), file.path, options);
 	if (result && result.code) {
 		buffer = new Buffer(result.code);
-		if (file.sourceMap && options.sourceMap) {
+		if (file.sourceMap && result.map) {
+			result.map.file = file.relative;
 			applySourceMap(file, result.map);
 		}
 	}
@@ -25,13 +26,17 @@ module.exports = function(options) {
 			try {
 				file.contents = transformBuffer(file.contents, file, options);
 			} catch (ex) {
-				done(ex, file);
+				done(new PluginError('gulp-jscc', ex));
 				return;
 			}
 		} else if (file.isStream()) {
 			file.contents = file.contents.pipe(new BufferStreams(function(err, buf, cb) {
 				if (buf) {
-					buf = transformBuffer(buf, file, options);
+					try {
+						buf = transformBuffer(buf, file, options);
+					} catch (ex) {
+						err = new PluginError('gulp-jscc', ex);
+					}
 				}
 				cb(err, buf);
 			}));

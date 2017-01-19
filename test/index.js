@@ -7,7 +7,9 @@ const jscc = require('../');
 
 describe('base', function() {
 	it('custom-vars.js', function(done) {
-		return vfs.src('test/fixtures/custom-vars.js')
+		return vfs.src('test/fixtures/custom-vars.js', {
+			sourcemaps: true,
+		})
 			.pipe(jscc({
 				values: {
 					_ZERO: 0,
@@ -34,18 +36,38 @@ x = $_NOT_DEFINED
 x = undefined`.trim());
 
 				done();
-			});
+			}).on("error", done);
 	});
 	it('example.js', function(done) {
-		return vfs.src('test/fixtures/example.js')
-			.pipe(jscc({
-
-			})).on('data', function(file) {
-				// console.log(String(file.contents));
-				assert.equal(String(file.contents).trim(), `/* eslint-disable no-console */
+		return vfs.src('test/fixtures/example.js', {
+			buffer: false
+		})
+			.pipe(jscc()).on('data', function(file) {
+				file.contents.on('data', function(contents) {
+					assert.equal(String(contents).trim(), `/* eslint-disable no-console */
 console.log('Debug mode on.');`.trim());
+					done();
+				}).on("error", done);
+			}).on("error", done);
+	});
+	it('error.js', function(done) {
+		return vfs.src('test/fixtures/error.js')
+			.pipe(jscc()).on('data', function(file) {
+				assert.ifError(file);
+			}).on('error', function(error) {
+				assert.equal(error.plugin, 'gulp-jscc')
 				done();
 			});
 	});
-
+	it('error.js in stream', function(done) {
+		return vfs.src('test/fixtures/error.js', {
+			buffer: false
+		})
+			.pipe(jscc()).on('data', function(file) {
+				file.contents.on('error', function(error) {
+					assert.equal(error.plugin, 'gulp-jscc')
+					done();
+				})
+			});
+	});
 });
