@@ -6,9 +6,9 @@ var applySourceMap = require('vinyl-sourcemaps-apply');
 const jscc = require('jscc');
 
 function transformBuffer(buffer, file, options) {
-	options = Object.assign({
+	options = Object.assign({}, options, {
 		sourceMap: Boolean(file.sourceMap),
-	}, options);
+	});
 	let result = jscc(buffer.toString(), file.path, options);
 	if (result && result.code) {
 		buffer = new Buffer(result.code);
@@ -21,6 +21,10 @@ function transformBuffer(buffer, file, options) {
 }
 
 module.exports = function(options) {
+	options = Object.assign({
+		prefixes: ['//', '// ', '/*', '/* ', '<!--', '<!-- ']
+	}, options);
+
 	function transform(file, encoding, done) {
 		if (file.isBuffer()) {
 			try {
