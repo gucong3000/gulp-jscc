@@ -43,6 +43,6 @@
     "istanbul": "^0.4.5",
     "mocha": "^4.0.1",
     "node-version-check": "^2.1.1",
-    "vinyl-fs": "^2.4.4"
+    "vinyl-fs": "^3.0.0"
   }
 }
