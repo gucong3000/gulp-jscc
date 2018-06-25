@@ -39,7 +39,7 @@
   "devDependencies": {
     "cover": "^0.2.9",
     "coveralls": "^3.0.0",
-    "eslint": "^4.0.0",
+    "eslint": "^5.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^5.0.0",
     "node-version-check": "^2.1.1",
