@@ -33,7 +33,7 @@
   "dependencies": {
     "bufferstreams": "^2.0.0",
     "gulp-util": "^3.0.8",
-    "jscc": "^0.3.3",
+    "jscc": "^1.0.0",
     "vinyl-sourcemaps-apply": "^0.2.1"
   },
   "devDependencies": {
