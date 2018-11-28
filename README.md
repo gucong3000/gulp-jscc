@@ -18,8 +18,8 @@ npm i gulp-jscc --save
 
 ```js
 gulp.src('test/fixtures/example.js')
-	.pipe(jscc(options))
-	.pipe(gulp.dest('dist'));
+  .pipe(jscc(options))
+  .pipe(gulp.dest('dist'));
 ```
 
 ## Documentation
@@ -30,4 +30,3 @@ You can read in the Wiki about:
 - [Basic Syntax](https://github.com/aMarCruz/jscc/wiki/Syntax)
 - [Keywords](https://github.com/aMarCruz/jscc/wiki/Keywords)
 - [Examples & Tricks](https://github.com/aMarCruz/jscc/wiki/Examples)
-

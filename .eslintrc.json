@@ -1,26 +1,25 @@
 {
+	"parserOptions": {
+		"sourceType": "script",
+		"impliedStrict": false
+	},
 	"env": {
-		"browser": false,
 		"es6": true,
 		"node": true
 	},
 	"extends": [
-		"eslint:recommended"
+		"standard"
 	],
 	"root": true,
 	"rules": {
-		"arrow-spacing": [
+		"comma-dangle": [
 			"error",
 			{
-				"after": true,
-				"before": true
-			}
-		],
-		"comma-spacing": [
-			"error",
-			{
-				"after": true,
-				"before": false
+				"arrays": "always-multiline",
+				"objects": "always-multiline",
+				"imports": "always-multiline",
+				"exports": "always-multiline",
+				"functions": "never"
 			}
 		],
 		"indent": [
@@ -30,25 +29,21 @@
 				"SwitchCase": 1
 			}
 		],
-		"keyword-spacing": [
-			"error",
-			{
-				"after": true,
-				"before": true
-			}
+		"no-tabs": [
+			"off"
 		],
-		"no-console": [
-			"off",
-			{
-			}
+		"no-var": [
+			"error"
+		],
+		"prefer-arrow-callback": [
+			"error"
+		],
+		"prefer-const": [
+			"error"
 		],
 		"quotes": [
 			"error",
-			"single",
-			{
-				"allowTemplateLiterals": true,
-				"avoidEscape": true
-			}
+			"double"
 		],
 		"semi": [
 			"error",
@@ -57,26 +52,22 @@
 				"omitLastInOneLineBlock": false
 			}
 		],
-		"space-before-blocks": [
-			"error",
-			"always"
-		],
-		"space-infix-ops": [
-			"error"
-		],
-		"spaced-comment": [
-			"error",
-			"always"
-		],
 		"strict": [
 			"error",
 			"safe"
-		],
-		"valid-jsdoc": [
-			"warn",
-			{
-				"requireReturn": false
-			}
 		]
-	}
+	},
+	"overrides": [
+		{
+			"files": [
+				"test/**/*"
+			],
+			"env": {
+				"mocha": true
+			},
+			"rules": {
+				"no-template-curly-in-string": "off"
+			}
+		}
+	]
 }

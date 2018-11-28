@@ -1,17 +1,17 @@
-'use strict';
-const Transform = require('stream').Transform;
-const PluginError = require('gulp-util').PluginError;
-const BufferStreams = require('bufferstreams');
-var applySourceMap = require('vinyl-sourcemaps-apply');
-const jscc = require('jscc');
+"use strict";
+const Transform = require("stream").Transform;
+const PluginError = require("plugin-error");
+const BufferStreams = require("bufferstreams");
+const applySourceMap = require("vinyl-sourcemaps-apply");
+const jscc = require("jscc");
 
-function transformBuffer(buffer, file, options) {
+function transformBuffer (buffer, file, options) {
 	options = Object.assign({}, options, {
 		sourceMap: Boolean(file.sourceMap),
 	});
-	let result = jscc(buffer.toString(), file.path, options);
+	const result = jscc(buffer.toString(), file.path, options);
 	if (result && result.code) {
-		buffer = new Buffer(result.code);
+		buffer = Buffer.from(result.code);
 		if (file.sourceMap && result.map) {
 			result.map.file = file.relative;
 			applySourceMap(file, result.map);
@@ -20,26 +20,26 @@ function transformBuffer(buffer, file, options) {
 	return buffer;
 }
 
-module.exports = function(options) {
+module.exports = function (options) {
 	options = Object.assign({
-		prefixes: ['//', '// ', '/*', '/* ', '<!--', '<!-- ']
+		prefixes: ["//", "// ", "/*", "/* ", "<!--", "<!-- "],
 	}, options);
 
-	function transform(file, encoding, done) {
+	function transform (file, encoding, done) {
 		if (file.isBuffer()) {
 			try {
 				file.contents = transformBuffer(file.contents, file, options);
 			} catch (ex) {
-				done(new PluginError('gulp-jscc', ex));
+				done(new PluginError("gulp-jscc", ex));
 				return;
 			}
 		} else if (file.isStream()) {
-			file.contents = file.contents.pipe(new BufferStreams(function(err, buf, cb) {
+			file.contents = file.contents.pipe(new BufferStreams((err, buf, cb) => {
 				if (buf) {
 					try {
 						buf = transformBuffer(buf, file, options);
 					} catch (ex) {
-						err = new PluginError('gulp-jscc', ex);
+						err = new PluginError("gulp-jscc", ex);
 					}
 				}
 				cb(err, buf);

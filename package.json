@@ -1,6 +1,6 @@
 {
   "name": "gulp-jscc",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A gulp plugin for jscc",
   "main": "index.js",
   "directories": {
@@ -9,11 +9,19 @@
   "engines": {
     "node": ">=6.0"
   },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
   "scripts": {
-    "coveralls": "npm run test-cov && coveralls < coverage/lcov.info",
-    "lint": "eslint .",
-    "test": "npm run lint && mocha",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha"
+    "report-coverage": "codecov",
+    "lint:eclint": "eclint check $(git ls-files | tee /tmp/git-files)",
+    "lint:eslint": "eslint $(grep \"\\.js$\" /tmp/git-files | grep -v \"^test/fixtures\")",
+    "pretest": "npm run lint:eclint && npm run lint:eslint && rm /tmp/git-files",
+    "test": "npm run unit",
+    "unit": "nyc mocha"
   },
   "repository": {
     "type": "git",
@@ -35,16 +43,22 @@
   "homepage": "https://github.com/gucong3000/gulp-jscc#readme",
   "dependencies": {
     "bufferstreams": "^2.0.0",
-    "gulp-util": "^3.0.8",
     "jscc": "^1.1.0",
+    "plugin-error": "^1.0.1",
     "vinyl-sourcemaps-apply": "^0.2.1"
   },
   "devDependencies": {
-    "cover": "^0.2.9",
-    "coveralls": "^3.0.0",
-    "eslint": "^5.0.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^5.0.0",
+    "codecov": "^3.1.0",
+    "eclint": "^2.8.1",
+    "eslint": "^5.9.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "exec-extra": "^2.6.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
     "vinyl-fs": "^3.0.0"
   }
 }
