@@ -6,9 +6,12 @@
   "directories": {
     "test": "test"
   },
+  "engines": {
+    "node": ">=6.0"
+  },
   "scripts": {
     "coveralls": "npm run test-cov && coveralls < coverage/lcov.info",
-    "lint": "node-version-gte-4 && eslint . || echo \"ESLint not supported\"",
+    "lint": "eslint .",
     "test": "npm run lint && mocha",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha"
   },
@@ -33,7 +36,7 @@
   "dependencies": {
     "bufferstreams": "^2.0.0",
     "gulp-util": "^3.0.8",
-    "jscc": "^0.3.3",
+    "jscc": "^1.1.0",
     "vinyl-sourcemaps-apply": "^0.2.1"
   },
   "devDependencies": {
@@ -42,7 +45,6 @@
     "eslint": "^5.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^5.0.0",
-    "node-version-check": "^2.1.1",
     "vinyl-fs": "^3.0.0"
   }
 }
