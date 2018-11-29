@@ -4,7 +4,7 @@ gulp-jscc
 [![NPM version](https://img.shields.io/npm/v/gulp-jscc.svg?style=flat-square)](https://www.npmjs.com/package/gulp-jscc)
 [![Travis](https://img.shields.io/travis/gucong3000/gulp-jscc.svg?&label=Linux)](https://travis-ci.org/gucong3000/gulp-jscc)
 [![AppVeyor](https://img.shields.io/appveyor/ci/gucong3000/gulp-jscc.svg?&label=Windows)](https://ci.appveyor.com/project/gucong3000/gulp-jscc)
-[![Coverage Status](https://img.shields.io/coveralls/gucong3000/gulp-jscc.svg)](https://coveralls.io/r/gucong3000/gulp-jscc)
+[![Codecov](https://img.shields.io/codecov/c/github/gucong3000/gulp-jscc.svg)](https://codecov.io/gh/gucong3000/gulp-jscc)
 
 A [gulp](http://gulpjs.com/) plugin for [jscc](https://github.com/aMarCruz/jscc).
 
