@@ -57,7 +57,7 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "exec-extra": "^2.6.0",
-    "mocha": "^5.2.0",
+    "mocha": "^6.1.0",
     "nyc": "^13.1.0",
     "vinyl-fs": "^3.0.0"
   }
