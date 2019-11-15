@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/gucong3000/gulp-jscc#readme",
   "dependencies": {
-    "bufferstreams": "^2.0.0",
+    "bufferstreams": "^3.0.0",
     "jscc": "^1.1.0",
     "plugin-error": "^1.0.1",
     "vinyl-sourcemaps-apply": "^0.2.1"
